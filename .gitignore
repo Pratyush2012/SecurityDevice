@@ -1,0 +1,31 @@
+# Secrets
+.env
+
+# Video, snapshots and models (privacy + size)
+eval/clips/
+snapshots/
+data/snapshots/
+*.mp4
+*.avi
+*.mov
+*.mkv
+models/
+*.pt
+*.onnx
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# VLM description cache
+.cache/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
