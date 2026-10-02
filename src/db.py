@@ -38,7 +38,9 @@ COLUMNS = [
 def connect(path: str) -> sqlite3.Connection:
     """Open the database (creating file and tables if needed)."""
     Path(path).parent.mkdir(parents=True, exist_ok=True)
-    conn = sqlite3.connect(path)
+    # FastAPI may open the connection in one worker thread and use it in another
+    # (still one request at a time), so allow cross-thread use.
+    conn = sqlite3.connect(path, check_same_thread=False)
     conn.row_factory = sqlite3.Row  # rows behave like dicts
     conn.executescript(SCHEMA)
     return conn
